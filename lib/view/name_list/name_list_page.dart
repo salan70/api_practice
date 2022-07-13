@@ -8,18 +8,13 @@ class NameListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parsonDataList = ref.watch(parsonDataListFutureProvider);
-    print(parsonDataList);
-
-    final numList = <int>[1, 2, 43];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Name List use FutureProvider'),
+        title: const Text('Person'),
       ),
-      body: Container(
-        color: Colors.blueGrey,
-        height: double.infinity,
-        width: double.infinity,
+      body: ColoredBox(
+        color: Colors.black12,
         child: parsonDataList.when(
           data: (parsonDataList) {
             return ListView.builder(
@@ -29,6 +24,11 @@ class NameListPage extends ConsumerWidget {
 
                 return Card(
                   child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        parsonData['avatar'].toString(),
+                      ),
+                    ),
                     title: Text(
                       '${parsonData['first_name']} ${parsonData['last_name']}',
                     ),
