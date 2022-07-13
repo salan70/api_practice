@@ -1,5 +1,6 @@
 import 'package:api_practice/model/person_model.dart';
 import 'package:api_practice/provider/providers.dart';
+import 'package:api_practice/view/name_list/name_list_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,6 +10,7 @@ class NameListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parsonDataList = ref.watch(parsonDataListFutureProvider);
+    final nameListViewModel = NameListViewModel();
 
     return Scaffold(
       appBar: AppBar(
@@ -19,28 +21,31 @@ class NameListPage extends ConsumerWidget {
         child: Column(
           children: [
             parsonDataList.when(
-              data: (parsonDataList) {
+              data: (personDataList) {
+                final sortedPersonDataList =
+                    nameListViewModel.sortFirstName(personDataList);
+
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: parsonDataList.length,
+                  itemCount: sortedPersonDataList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final parsonData = parsonDataList[index];
+                    final personData = sortedPersonDataList[index];
 
                     return Card(
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(
-                            parsonData.avatar,
+                            personData.avatar,
                           ),
                         ),
                         title: Text(
-                          '${parsonData.first_name} ${parsonData.last_name}',
+                          '${personData.first_name} ${personData.last_name}',
                         ),
                         subtitle: Text(
-                          parsonData.email,
+                          personData.email,
                         ),
-                        trailing: Text('id: ${parsonData.id}'),
+                        trailing: Text('id: ${personData.id}'),
                       ),
                     );
                   },
