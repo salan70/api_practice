@@ -1,3 +1,4 @@
+import 'package:api_practice/model/person_model.dart';
 import 'package:api_practice/provider/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,22 +25,22 @@ class NameListPage extends ConsumerWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: parsonDataList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final dynamic parsonData = parsonDataList[index];
+                    final parsonData = parsonDataList[index];
 
                     return Card(
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(
-                            parsonData['avatar'].toString(),
+                            parsonData.avatar,
                           ),
                         ),
                         title: Text(
-                          '${parsonData['first_name']} ${parsonData['last_name']}',
+                          '${parsonData.first_name} ${parsonData.last_name}',
                         ),
                         subtitle: Text(
-                          '${parsonData['email']}',
+                          parsonData.email,
                         ),
-                        trailing: Text('id: ${parsonData['id']}'),
+                        trailing: Text('id: ${parsonData.id}'),
                       ),
                     );
                   },
