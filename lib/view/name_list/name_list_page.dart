@@ -8,7 +8,7 @@ class NameListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Name List'),
+        title: const Text('Name List use FutureProvider'),
       ),
     );
   }
