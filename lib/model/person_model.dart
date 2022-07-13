@@ -1,6 +1,6 @@
 class Person {
-  Person({required this.firstNameInitial, required this.count});
+  Person({required this.lastNameInitial, required this.count});
 
-  String firstNameInitial;
+  String lastNameInitial;
   int count;
 }
