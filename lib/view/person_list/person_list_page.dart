@@ -8,7 +8,7 @@ class PersonListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final personDataList = ref.watch(parsonDataListFutureProvider);
+    final personDataList = ref.watch(personDataListFutureProvider);
     final personListViewModel = PersonListViewModel();
 
     return Scaffold(
@@ -17,46 +17,37 @@ class PersonListPage extends ConsumerWidget {
       ),
       body: ColoredBox(
         color: Colors.black12,
-        child: Column(
-          children: [
-            personDataList.when(
-              data: (personDataList) {
-                final sortedPersonDataList =
-                    personListViewModel.sortFirstName(personDataList);
+        child: personDataList.when(
+          data: (personDataList) {
+            final sortedPersonDataList =
+                personListViewModel.sortFirstName(personDataList);
 
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: sortedPersonDataList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final personData = sortedPersonDataList[index];
+            return ListView.builder(
+              itemCount: sortedPersonDataList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final personData = sortedPersonDataList[index];
 
-                    return Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            personData.avatar,
-                          ),
-                        ),
-                        title: Text(
-                          '${personData.first_name} ${personData.last_name}',
-                        ),
-                        subtitle: Text(
-                          personData.email,
-                        ),
-                        trailing: Text('id: ${personData.id}'),
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        personData.avatar,
                       ),
-                    );
-                  },
+                    ),
+                    title: Text(
+                      '${personData.first_name} ${personData.last_name}',
+                    ),
+                    subtitle: Text(
+                      personData.email,
+                    ),
+                    trailing: Text('id: ${personData.id}'),
+                  ),
                 );
               },
-              error: (error, stack) => Text('Error: $error'),
-              loading: () => const CircularProgressIndicator(),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-          ],
+            );
+          },
+          error: (error, stack) => Text('Error: $error'),
+          loading: () => const CircularProgressIndicator(),
         ),
       ),
     );
