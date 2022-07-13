@@ -1,15 +1,15 @@
 import 'package:api_practice/provider/providers.dart';
-import 'package:api_practice/view/name_list/name_list_view_model.dart';
+import 'package:api_practice/view/person_list/person_list_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NameListPage extends ConsumerWidget {
-  const NameListPage({Key? key}) : super(key: key);
+class PersonListPage extends ConsumerWidget {
+  const PersonListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final parsonDataList = ref.watch(parsonDataListFutureProvider);
-    final nameListViewModel = NameListViewModel();
+    final personDataList = ref.watch(parsonDataListFutureProvider);
+    final personListViewModel = PersonListViewModel();
 
     return Scaffold(
       appBar: AppBar(
@@ -19,10 +19,10 @@ class NameListPage extends ConsumerWidget {
         color: Colors.black12,
         child: Column(
           children: [
-            parsonDataList.when(
+            personDataList.when(
               data: (personDataList) {
                 final sortedPersonDataList =
-                    nameListViewModel.sortFirstName(personDataList);
+                    personListViewModel.sortFirstName(personDataList);
 
                 return ListView.builder(
                   shrinkWrap: true,

@@ -1,4 +1,4 @@
-import 'package:api_practice/view/name_list/name_list_page.dart';
+import 'package:api_practice/view/person_list/person_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const NameListPage(),
+      home: const PersonListPage(),
     );
   }
 }
