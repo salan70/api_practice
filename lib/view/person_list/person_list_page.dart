@@ -8,7 +8,7 @@ class PersonListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final personDataList = ref.watch(personDataListFutureProvider);
+    final personDataList = ref.watch(parsonDataListFutureProvider);
     final personListViewModel = PersonListViewModel();
 
     return Scaffold(
