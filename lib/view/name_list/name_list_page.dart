@@ -35,6 +35,7 @@ class NameListPage extends ConsumerWidget {
                     subtitle: Text(
                       '${parsonData['email']}',
                     ),
+                    trailing: Text('id: ${parsonData['id']}'),
                   ),
                 );
               },
