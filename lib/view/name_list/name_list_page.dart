@@ -1,4 +1,3 @@
-import 'package:api_practice/model/person_model.dart';
 import 'package:api_practice/provider/providers.dart';
 import 'package:api_practice/view/name_list/name_list_view_model.dart';
 import 'package:flutter/material.dart';
