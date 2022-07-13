@@ -1,4 +1,4 @@
-import 'package:api_practice/provider/providers.dart';
+import 'package:api_practice/provider/provider.dart';
 import 'package:api_practice/view/person_list/person_list_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
