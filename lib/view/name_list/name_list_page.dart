@@ -51,11 +51,11 @@ class NameListPage extends ConsumerWidget {
             const SizedBox(
               height: 24,
             ),
+            TextButton(onPressed: () {}, child: const Text('名前の長さの昇順で並び替え')),
             TextButton(
               onPressed: () {},
-              child: const Text('idの昇順で並び替え（デフォルト）'),
+              child: const Text('初期の並び順に戻す'),
             ),
-            TextButton(onPressed: () {}, child: const Text('名前の長さの昇順で並び替え'))
           ],
         ),
       ),
